@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+ <head>
+
+
+   <title>LR target page </title>
+   <style>
+   table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+   }
+
+   td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    }
+
+   tr:nth-child(even) {
+    background-color: #dddddd;
+   }
+   .topright {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    font-size: 18px;
+   }
+
+   .main {
+    text-align: left;
+    padding: 8px;
+    font-family: arial, sans-serif;
+     }
+  </style>
+
+ </head>
+
+<body >
+    <div  class="topright"><a href='/logout'>Logout</a></div>
+    <div><a href='/targetexp'>export</a></div>
+    <h> Consolidated Sprint Task info</h>
+    <div>
+        <div>
+
+
+         <table id="total">
+
+           <tr>
+             <th> Category</th>
+             <th>Estimated Hours</th>
+             <th>Actual hours</th>
+           </tr>
+             {%for data in result['res']%}
+              <tr >
+                 <td>{{data['type']}}</td>
+                 <td >{{data['est']}}</td>
+                 <td >{{data['act']}}</td>
+
+            </tr>
+         {% endfor %}
+         </table>
+             <div>
+               <div id="count2"></div>
+               <div id="Estimated"></div>
+               <div id="Actual"></div>
+            </div>
+            <script type="text/javascript">
+              var ele=document.getElementById("total");
+              var sum=0,sp,sum1=0;
+              for(var i = 1; i < ele.rows.length; i ++)
+              {
+                   sp = parseFloat(ele.rows[i].cells[1].innerHTML);
+                   sp1 = parseFloat(ele.rows[i].cells[2].innerHTML);
+                   sum=sum+sp;
+                   sum1=sum1+sp1;
+
+               }
+               var i1=parseInt(i)-1;
+               document.getElementById("count2").innerHTML="Total Items :"+i1;
+               document.getElementById("Estimated").innerHTML="Estimated hours are:"+sum;
+               document.getElementById("Actual").innerHTML="Actual hours are:"+sum1;
+          </script>
+       </div>
+    </div>
+</body>
+
+</html>

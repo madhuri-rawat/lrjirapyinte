@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+ <head>
+
+
+   <title>LR issue page  </title>
+   <style>
+   table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+   }
+
+   td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    }
+
+   tr:nth-child(even) {
+    background-color: #dddddd;
+   }
+   .topright {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    font-size: 18px;
+   }
+  </style>
+
+ </head>
+
+<body >
+    <div>
+        <div class="topright"><a href='/logout'>Logout</a> </div>
+     </div>
+    <h>User Stories</h>
+    <div>
+        <div>
+
+         <table id="SP">
+
+           <tr>
+             <th> Key</th>
+             <th sorted>Summary </th>
+             <th >Story Points</th>
+             <th>Team</th>
+             <th>Sprint</th>
+           </tr>
+
+             {%for issue in p2%}
+              <tr>
+                <td><a href="https://jira.logrhythm.com/browse/{{issue.key}}">{{issue.key}}</a></td>
+                <td>{{issue.fields.summary}}</td>
+                <td >{{issue.fields.customfield_10002}}</td>
+                <td>{{issue.fields.customfield_10300}}</td>
+                <td>Sprint :{%for sprint in issue.fields.customfield_10004%} {{sprint[sprint.index('name=')+5:sprint.find('start')-1]}},
+                  {% endfor %}
+                 </td>
+            </tr>
+             {% endfor %}
+
+         </table>
+
+           <div>
+             <div id="count"></div>
+             <div id="Total1"><b></b></div>
+             <div id="jira"></div>
+          </div>
+          <script type="text/javascript">
+              var ele=document.getElementById("SP");
+              var sum=0;
+              var sp;
+              for(var i = 1; i < ele.rows.length; i ++)
+              {
+                   sp = parseFloat(ele.rows[i].cells[2].innerHTML);
+                   
+                   if (!isNaN(sp))
+                      sum=sum+sp;
+
+               }
+               var i1=parseInt(i)-1;
+               document.getElementById("count").innerHTML="Total user stories :"+i1;
+               document.getElementById("Total1").innerHTML="Total story points are  :"+sum;
+               document.getElementById("jira").innerHTML="MY TEXT IS :";
+
+
+          </script>
+
+     </div>
+    </div>
+
+</body>
+
+</html>

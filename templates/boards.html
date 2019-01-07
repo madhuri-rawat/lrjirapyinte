@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+ <head>
+
+
+   <title>LR Test python </title>
+   <style>
+   table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+   }
+
+   td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    }
+
+   tr:nth-child(even) {
+    background-color: #dddddd;
+   }
+  </style>
+
+ </head>
+
+<body>
+    <h> Test Page</h>
+    <div><a href='/logout'>Logout</a></div>
+    <form action="{{url_for('sprintlist')}}" method="Get">
+        <div class="form-group">
+         <div class="input-group"><b>Board :</b>
+           <select id="mySelect" name="bvalue" >
+           {% for boards in brd %}
+            <option>
+                {{ boards.name }}
+            </option>
+
+            {% endfor %}
+            </select>
+
+        </div>
+        <br>
+     <button type="submit" class="btn btn-default">Go</button>
+    </div>
+   </form>
+
+</body>
+
+</html>

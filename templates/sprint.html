@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+ <head>
+
+
+   <title>LR issue page  </title>
+   <style>
+   table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+   }
+
+   td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    }
+
+   tr:nth-child(even) {
+    background-color: #dddddd;
+   }
+
+  .container {
+    position: relative;
+   }
+
+  .topright {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    font-size: 18px;
+   }
+
+
+   .main {
+    text-align: right;
+    padding: 8px;
+    font-family: arial, sans-serif;
+     }
+  </style>
+
+ </head>
+
+<body >
+    <div  class="topright"><a href='/logout'>Logout</a></div>
+    <h> Sprints available are :</h>
+    <div>
+        <div>
+         <form action="{{url_for('story')}}" method="Get">
+           <select id="sp" name="sprint" >
+           {% for sprint in s %}
+            <option>
+                {{ sprint }}
+            </option>
+
+            {% endfor %}
+            </select>
+            <input type="radio" name="base" value="Label" checked> Label<br>
+            <input type="radio" name="base" value="Stag"> Summary Tag<br>
+
+            <button type="submit" class="btn btn-default">Go</button>
+         </form>
+      </div>
+    </div>
+
+
+</body>
+
+</html>

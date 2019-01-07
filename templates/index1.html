@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+ <head>
+
+
+   <title>LR issue page  </title>
+   <style>
+   table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+   }
+
+   td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    }
+
+   tr:nth-child(even) {
+    background-color: #dddddd;
+   }
+  </style>
+
+ </head>
+
+<body >
+    <div class="main"><a href='/logout'>Logout</a>"</div>
+    <h> Iteration Subtask with Details</h>
+    <div>
+        <div>
+
+         <table id="Issues">
+
+           <tr>
+             <th> Key</th>
+             <th hidden >Summary </th>
+             <th> Category</th>
+             <th> task</th>
+             <th>Estimated Hours</th>
+             <th>Actual hours</th>
+             <th>Assignee </th>
+             <th>Reporter</th>
+             <th>Team</th>
+           </tr>
+             {%for issue in p1%}
+              <tr >
+                 <td><a href="https://jira.logrhythm.com/browse/{{issue.key}}">{{issue.key}}</a></td>
+                 <td hidden>{{issue.fields.summary}}</td>
+                 <td id="Cat"></td>
+                 <td id="task"></td>
+                 {%if issue.raw['fields']['timeoriginalestimate']%}
+                 <td >{{issue.raw['fields']['timeoriginalestimate']/3600}}</td>
+                 {% else %}
+                     <td >{{issue.raw['fields']['timeoriginalestimate']}}</td>
+                 {% endif %}
+                 {%if issue.raw['fields']['timespent']%}
+                  <td >{{issue.raw['fields']['timespent']/3600}}</td>
+                 {% else %}
+                     <td >{{issue.raw['fields']['timespent']}}</td>
+                 {% endif %}
+                <td>{{issue.fields.assignee}}</td>
+                <td>{{issue.fields.reporter}}</td>
+                <td>{{issue.fields.customfield_10300}}</td>
+
+            </tr>
+         {% endfor %}
+         </table>
+           <div>
+             <div id="count1"></div>
+             <div id="Est"></div>
+             <div id="Act"></div>
+           </div>
+            <script type="text/javascript">
+              var ele=document.getElementById("issues");
+              var sum2=0,sum3=0;
+              var sp,sp1;
+              for(var j = 1; j < ele.rows.length; j ++)
+              {
+                   sp = parseFloat(ele.rows[i].cells[4].innerHTML);
+                   if (!isNaN(sp))
+                      sum2=sum2+sp;
+                   sp1 = parseFloat(ele.rows[i].cells[5].innerHTML);
+                   if (!isNaN(sp1))
+                     sum3=sum3+sp1;
+              }
+              document.getElementById("Est").innerHTML="Estimated hours are:"+sum2;
+              document.getElementById("Act").innerHTML="Actual hours are:"+sum3;
+          </script>
+      </div>
+    </div>
+
+</body>
+
+</html>

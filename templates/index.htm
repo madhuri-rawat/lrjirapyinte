@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+ <head>
+
+
+   <title>LR Test python </title>
+   <style>
+   table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+   }
+
+   td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    }
+
+   tr:nth-child(even) {
+    background-color: #dddddd;
+   }
+
+   .topright {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    font-size: 18px;
+   }
+  </style>
+  
+ </head>
+ 
+<body>
+    <h> Test Page</h>
+    <div class="main"><a href='/logout'>Logout</a>"</div>
+    <div class="container">
+        <div class="header"><b>Iteration :</b>
+           <select id="mySelect" >
+           {% for value in ls %}
+
+            <option>
+                {{ value }}
+            </option>
+
+            {% endfor %}
+            </select>
+
+        </div>
+        <br>
+       <div>
+         <table>
+             <th>Name</th>
+             <th>Estimated Hours</th>
+             <th>Actual hours</th>
+             <th>Story points</th>
+         </table>
+       </div>
+    </div>
+
+</body>
+ 
+</html>
